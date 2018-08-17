@@ -1,0 +1,151 @@
+<html>
+<head>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart', 'line']});
+      google.charts.setOnLoadCallback(drawCharts);
+
+
+      function drawCharts(){
+        drawTempChart();
+        drawVoltChart();
+        drawRPMChart();
+        drawGforceChart();
+      }
+
+    function drawTempChart() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'milliseconds');
+      data.addColumn('number', 'Temperatura Motor');
+      data.addColumn('number', 'Temperatura Baterie 1');
+      data.addColumn('number', 'Temperatura Baterie 2');
+
+      data.addRows([<% temps.forEach(function(dataSet){ %>
+        [<%- JSON.parse("[" + dataSet + "]") %>],
+      <% }) %>
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Temperaturi',
+          subtitle: 'in grade celsius'
+        },
+        width: 1400,
+        height: 500,
+        axes: {
+          x: {
+            0: {side: 'botom'}
+          }
+        }
+      };
+
+      var chart = new google.charts.Line(document.getElementById('thermistors'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+    function drawVoltChart(){
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'milliseconds');
+      data.addColumn('number', 'Voltaj Baterie 1');
+      data.addColumn('number', 'Voltaj Baterie 2');
+
+      data.addRows([
+        <% volts.forEach(function(dataSet){ %>
+          [<%- JSON.parse("[" + dataSet + "]") %>],
+        <% }) %>
+      ]);
+
+      var options = {
+        chart: {
+          title: 'Voltaje Baterii',
+          subtitle: ''
+        },
+        width: 1400,
+        height: 500,
+        axes: {
+          x: {
+            0: {side: 'botom'}
+          }
+        }
+      };
+
+      var chart = new google.charts.Line(document.getElementById('voltages'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+    function drawRPMChart(){
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'milliseconds');
+      data.addColumn('number', 'RPM');
+
+      data.addRows([
+        <% rpms.forEach(function(dataSet){ %>
+          [<%- JSON.parse("[" + dataSet + "]") %>],
+        <% }) %>
+      ]);
+
+      var options = {
+        chart: {
+          title: 'RPM Motor',
+          subtitle: ''
+        },
+        width: 1400,
+        height: 500,
+        axes: {
+          x: {
+            0: {side: 'botom'}
+          }
+        }
+      };
+
+      var chart = new google.charts.Line(document.getElementById('rpm'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+    function drawGforceChart(){
+      var data = new google.visualization.DataTable();
+      data.addColumn('number', 'milliseconds');
+      data.addColumn('number', 'X');
+      data.addColumn('number', 'Y');
+
+      data.addRows([
+        <% gforces.forEach(function(dataSet){ %>
+          [<%- JSON.parse("[" + dataSet + "]") %>],
+        <% }) %>
+      ]);
+
+      var options = {
+        chart: {
+          title: 'gForces',
+          subtitle: 'on axis X and Y'
+        },
+        width: 1400,
+        height: 500,
+        axes: {
+          x: {
+            0: {side: 'botom'}
+          }
+        }
+      };
+
+      var chart = new google.charts.Line(document.getElementById('gforces'));
+
+      chart.draw(data, google.charts.Line.convertOptions(options));
+    }
+
+  </script>
+</head>
+<body>
+  <div id="thermistors"></div>
+  <br>
+  <div id="voltages"></div>
+  <br>
+  <div id="rpm"></div>
+  <br>
+  <div id="gforces"></div>
+</body>
+</html>

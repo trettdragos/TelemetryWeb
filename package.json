@@ -21,6 +21,8 @@
   },
   "homepage": "https://github.com/trettdragos/TelemetryWeb#readme",
   "dependencies": {
-    "express": "^4.16.3"
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "line-by-line": "^0.1.6"
   }
 }
