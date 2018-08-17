@@ -1,0 +1,26 @@
+{
+  "name": "telemetryweb",
+  "version": "1.0.0",
+  "description": "data analisys web program",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/trettdragos/TelemetryWeb.git"
+  },
+  "keywords": [
+    "keywords"
+  ],
+  "author": "Trett Dragos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/trettdragos/TelemetryWeb/issues"
+  },
+  "homepage": "https://github.com/trettdragos/TelemetryWeb#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
