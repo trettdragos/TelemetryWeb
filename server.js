@@ -13,13 +13,12 @@ fs.readdir(testFolder, (err, files) => {
 })
 
 app.get('/', function(req, res){
-	console.log(fileArray);
 	res.render('pages/file_list.ejs', {fileArray:fileArray});
 });
 
-app.get('/:file', function(req, res){
+app.get('/open-file/:fisier', function(req, res){
 	let lineReader = require('readline').createInterface({
-  		input: require('fs').createReadStream('./db/'+req.params.file+'.txt')
+  		input: require('fs').createReadStream('./db/'+req.params.fisier+'.txt')
 	});
 	let temps = [];
 	let volts = [];
